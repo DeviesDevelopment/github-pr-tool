@@ -24,7 +24,7 @@ jobs:
           release_name: Release $(date "+%Y-%m-%d %H:%M:%S")
           commitish: $GITHUB_SHA
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          draft: false
+          draft: true
           prerelease: false
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
