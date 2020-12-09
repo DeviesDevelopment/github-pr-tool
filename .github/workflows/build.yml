@@ -22,7 +22,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release_name: Release $(date "+%Y-%m-%d %H:%M:%S")
-          commitish: $GITHUB_SHA
           tag_name: ${{ steps.create_tag.outputs.tag }}
           draft: true
           prerelease: false

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 module.exports = {
     packagerConfig: {},
@@ -27,7 +28,7 @@ module.exports = {
                 console.log(`Artifact for ${result.arch}/${result.platform} packaged to: ${artifactPath}`);
                 const pathParts = artifactPath.split(".");
                 const extension = pathParts[pathParts.length - 1];
-                const newPath = `out/github-pr-tool-${result.arch}-${result.platform}.${extension}`;
+                const newPath = `out${path.sep}github-pr-tool-${result.arch}-${result.platform}.${extension}`;
                 fs.copyFile(result.artifacts[0], newPath, (err) => {
                     if (err) {
                         throw err;
