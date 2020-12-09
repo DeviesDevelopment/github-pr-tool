@@ -25,7 +25,7 @@ jobs:
         with:
           release_name: ${{ steps.create_tag.outputs.release_name }}
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          draft: false
+          draft: true
           prerelease: false
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
