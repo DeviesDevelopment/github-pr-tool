@@ -15,9 +15,29 @@
   </head>
   <body onload="populateInputFields()">
     <h1>Settings</h1>
-    <p>Personal access token: <input type="text" placeholder="" id="token"></p>
-    <p>Organization: <input type="text" placeholder="" id="organization"></p>
-    <p>Team: <input type="text" placeholder="" id="team"></p>
+
+    <p>Follow <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">this guide</a> to create a personal access token for your script. 
+
+
+<p>
+These are the default permissions <a href="https://developer.github.com/v4/guides/forming-calls/">recommended by GitHub</a>:
+
+<ul>
+  <li>repo</li>
+  <li>read:org</li>
+  <li>read:public_key</li>
+  <li>read:repo_hook</li>
+  <li>user</li>
+  <li>read:gpg_key</li>
+</ul>
+
+<p>If your organization uses SSO, you must enable SSO for your access token after you have created it.
+
+<hr/>
+
+    <p>Personal access token: <input type="text" placeholder="See instructions above..." id="token"></p>
+    <p>Organization: <input type="text" placeholder="ex. WirelessCar" id="organization"></p>
+    <p>Team: <input type="text" placeholder="ex. U-GitHub-VW-Buggy" id="team"></p>
     <button type="button" onclick="getInputValue();">Save</button>
     <script>
       function getInputValue() {
