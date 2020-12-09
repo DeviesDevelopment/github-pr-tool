@@ -119,7 +119,7 @@ $(document).ready(function () {
     TEAM = localStorage.getItem("TEAM");
 
     if (!PERSONAL_ACCESS_TOKEN || !ORGANIZATION || !TEAM) {
-      window.location.href = "input.html";
+      window.location.href = "settings.html";
     }
 
     makeRequest();

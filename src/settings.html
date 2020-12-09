@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title of the Document</title>
+    <title>Settings</title>
+    <head>
+      <script>
+        function populateInputFields() {
+          document.getElementById("token").value = localStorage.getItem("PERSONAL_ACCESS_TOKEN");
+          document.getElementById("organization").value = localStorage.getItem("ORGANIZATION");
+          document.getElementById("team").value = localStorage.getItem("TEAM");
+        }
+      </script>
+    </head>
   </head>
-  <body>
+  <body onload="populateInputFields()">
     <p>Personal access token: <input type="text" placeholder="" id="token"></p>
     <p>Organization: <input type="text" placeholder="" id="organization"></p>
     <p>Team: <input type="text" placeholder="" id="team"></p>
-    <button type="button" onclick="getInputValue();">Get Value</button>
+    <button type="button" onclick="getInputValue();">Save</button>
     <script>
       function getInputValue() {
         let organization = document.getElementById("organization").value;
@@ -17,6 +26,7 @@
         localStorage.setItem("PERSONAL_ACCESS_TOKEN", token);
         localStorage.setItem("ORGANIZATION", organization);
         localStorage.setItem("TEAM", team);
+
         window.location.href = "index.html";
       }
     </script>
