@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the Document</title>
+  </head>
+  <body>
+    <p>Personal access token: <input type="text" placeholder="" id="token"></p>
+    <p>Organization: <input type="text" placeholder="" id="organization"></p>
+    <p>Team: <input type="text" placeholder="" id="team"></p>
+    <button type="button" onclick="getInputValue();">Get Value</button>
+    <script>
+      function getInputValue() {
+        let organization = document.getElementById("organization").value;
+        let team = document.getElementById("team").value;
+        let token = document.getElementById("token").value;
+
+        localStorage.setItem("PERSONAL_ACCESS_TOKEN", token);
+        localStorage.setItem("ORGANIZATION", organization);
+        localStorage.setItem("TEAM", team);
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

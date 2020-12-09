@@ -3,7 +3,6 @@
 
 <head>
   <link rel="stylesheet" href="index.css">
-  <script src="../env.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="github.js"></script>
 </head>
@@ -11,7 +10,8 @@
 <body>
   <h1 id="mainHeader"></h1>
   <script type="text/javascript">
-    document.getElementById('mainHeader').innerText = "Open pull requests for Team " + env.TEAM;
+    var TEAM = localStorage.getItem("TEAM");
+    document.getElementById('mainHeader').innerText = "Open pull requests for Team " + TEAM;
   </script>
 
   <table id="table">

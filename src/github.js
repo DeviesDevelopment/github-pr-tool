@@ -1,43 +1,49 @@
-var graphql_script = `
-  query {
-    rateLimit {
-      limit
-      cost
-      remaining
-      resetAt
-    }
-    organization (login: "${env.ORGANIZATION}") {
-      name
-      team (slug: "${env.TEAM}") {
+var ORGANIZATION = "";
+var TEAM = "";
+var PERSONAL_ACCESS_TOKEN = "";
+
+function getGraphQLQuery() {
+  return `
+    query {
+      rateLimit {
+        limit
+        cost
+        remaining
+        resetAt
+      }
+      organization (login: "${ORGANIZATION}") {
         name
-        repositories (first: 100 <AFTER>) {
-          edges {
-            node {
-              name
-              pullRequests (first: 100 states: [OPEN]) {
-                edges {
-                  node {
-                    title
-                    url
-                    author {
-                      login
+        team (slug: "${TEAM}") {
+          name
+          repositories (first: 100 <AFTER>) {
+            edges {
+              node {
+                name
+                pullRequests (first: 100 states: [OPEN]) {
+                  edges {
+                    node {
+                      title
+                      url
+                      author {
+                        login
+                      }
+                      createdAt
+                      reviewDecision
                     }
-                    createdAt
-                    reviewDecision
                   }
                 }
               }
             }
-          }
-          pageInfo {
-            endCursor
-            hasNextPage
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
           }
         }
       }
     }
-  }
-`;
+  `;
+}
 
 var formatString = str => str ? str[0].toUpperCase() + str.slice(1, str.length).toLowerCase().replace("_", " ") : "";
 var formatDate = d => d.getFullYear()
@@ -51,16 +57,18 @@ var formatDate = d => d.getFullYear()
     + ('0' + d.getMinutes()).slice(-2);
 
 function makeRequest(endCursor) {
+    var query = getGraphQLQuery();
+
     var graphql_query = endCursor ?
-        graphql_script.replace('<AFTER>', `after: "${endCursor}"`) :
-        graphql_script.replace('<AFTER>', '');
+        query.replace('<AFTER>', `after: "${endCursor}"`) :
+        query.replace('<AFTER>', '');
 
     $.ajax({
         url: 'https://api.github.com/graphql',
         type: "POST",
         data: JSON.stringify({ query: graphql_query }),
         beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "bearer " + env.PERSONAL_ACCESS_TOKEN)
+            xhr.setRequestHeader("Authorization", "bearer " + PERSONAL_ACCESS_TOKEN)
             xhr.setRequestHeader("Content-Type", "application/json")
         }, success: function (responseData) {
             document.getElementById('message').innerText = '';
@@ -106,5 +114,13 @@ function makeRequest(endCursor) {
 }
 
 $(document).ready(function () {
+    PERSONAL_ACCESS_TOKEN = localStorage.getItem("PERSONAL_ACCESS_TOKEN");
+    ORGANIZATION = localStorage.getItem("ORGANIZATION");
+    TEAM = localStorage.getItem("TEAM");
+
+    if (!PERSONAL_ACCESS_TOKEN || !ORGANIZATION || !TEAM) {
+      window.location.href = "input.html";
+    }
+
     makeRequest();
 });
