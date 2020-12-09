@@ -6,7 +6,7 @@ module.exports = {
         {
             name: "@electron-forge/maker-squirrel",
             config: {
-                name: "github_pr_todo"
+                name: "github_pr_tool"
             }
         },
         {

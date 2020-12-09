@@ -40,6 +40,9 @@ jobs:
           - os: ubuntu-latest
             artifact_path: out/github-pr-tool-x64-linux.deb
             artifact_name: github-pr-tool-debian.deb
+          - os: windows-latest
+            artifact_path: out/github-pr-tool-x64-windows.exe
+            artifact_name: github-pr-tool-windows.exe
 
     steps:
       - name: Checkout
