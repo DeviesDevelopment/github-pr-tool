@@ -6,9 +6,9 @@ var graphql_script = `
       remaining
       resetAt
     }
-    organization (login: "WirelessCar") {
+    organization (login: "${env.ORGANIZATION}") {
       name
-      team (slug: "U-GitHub-${env.PROGRAM}-${env.TEAM_NAME}") {
+      team (slug: "${env.TEAM}") {
         name
         repositories (first: 100 <AFTER>) {
           edges {
