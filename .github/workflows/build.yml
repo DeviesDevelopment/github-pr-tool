@@ -23,7 +23,7 @@ jobs:
         with:
           release_name: Release $(date "+%Y-%m-%d %H:%M:%S")
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          draft: true
+          draft: false
           prerelease: false
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
