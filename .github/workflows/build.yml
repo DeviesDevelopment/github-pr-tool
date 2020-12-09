@@ -36,8 +36,10 @@ jobs:
         include:
           - os: macos-latest
             artifact_path: out/github-pr-tool-x64-darwin.zip
+            artifact_name: github-pr-tool-macOS.zip
           - os: ubuntu-latest
             artifact_path: out/github-pr-tool-x64-linux.deb
+            artifact_name: github-pr-tool-debian.deb
 
     steps:
       - name: Checkout
@@ -52,5 +54,5 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_path: ${{ matrix.artifact_path }} 
-          asset_name: ${{ matrix.artifact_path }}
+          asset_name: ${{ matrix.artifact_name }}
           asset_content_type: application/zip
