@@ -13,7 +13,7 @@ jobs:
       - name: Create tag
         id: create_tag
         run: |
-          timestamp=$(date "+%Y-%m-%d-%H-%M-%S")
+          timestamp=$(date "%Y-%m-%d-%H-%M-%S")
           tag=release-$timestamp
           echo "::set-output name=tag::$tag"
           echo "::set-output name=timestamp::$timestamp"
