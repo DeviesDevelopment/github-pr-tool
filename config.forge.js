@@ -26,6 +26,9 @@ module.exports = {
             results.forEach(result => {
                 const artifactPath = result.artifacts[0];
                 console.log(`Artifact for ${result.arch}/${result.platform} packaged to: ${artifactPath}`);
+                if (artifactPath.contains("squirrel.windows")) {
+                    artifactPath = artifactPath + path.sep + "github-pr-tool.exe";
+                }
                 const pathParts = artifactPath.split(".");
                 const extension = pathParts[pathParts.length - 1];
                 const newPath = `out${path.sep}github-pr-tool-${result.arch}-${result.platform}.${extension}`;
