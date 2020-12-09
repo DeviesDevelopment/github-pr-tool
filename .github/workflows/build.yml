@@ -13,7 +13,7 @@ jobs:
       - name: Create tag
         id: create_tag
         run: |
-          tag=Release $(date "+%Y-%m-%d %H:%M:%S")
+          tag=Release-$(date "+%Y-%m-%d-%H:%M:%S")
           echo "::set-output name=tag::$tag"
       - name: Create Release
         id: create_release
@@ -21,6 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          commitish: $GITHUB_SHA
           tag_name: ${{ steps.create_tag.outputs.tag }}
           release_name: ${{ steps.create_tag.outputs.tag }}
           draft: false
