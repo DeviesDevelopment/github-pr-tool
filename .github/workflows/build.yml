@@ -13,17 +13,15 @@ jobs:
       - name: Create tag
         id: create_tag
         run: |
-          timestamp=$(date +%Y-%m-%d/%H.%M.%S)
-          tag=release-$timestamp
+          tag=builds-$(date +%Y%m%d-%H%M%S)
           echo "::set-output name=tag::$tag"
-          echo "::set-output name=timestamp::$timestamp"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: Release ${{ steps.create_tag.outputs.timestamp }}
+          release_name: Release $(date "+%Y-%m-%d %H:%M:%S")
           commitish: $GITHUB_SHA
           tag_name: ${{ steps.create_tag.outputs.tag }}
           draft: false
