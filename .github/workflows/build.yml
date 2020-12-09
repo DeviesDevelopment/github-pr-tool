@@ -13,7 +13,7 @@ jobs:
       - name: Create tag
         id: create_tag
         run: |
-          tag=builds-$(date +%Y%m%d-%H%M%S)
+          tag=Release $(date "+%Y-%m-%d %H:%M:%S")
           echo "::set-output name=tag::$tag"
       - name: Create Release
         id: create_release
@@ -23,7 +23,7 @@ jobs:
         with:
           tag_name: ${{ steps.create_tag.outputs.tag }}
           release_name: ${{ steps.create_tag.outputs.tag }}
-          draft: true
+          draft: false
           prerelease: false
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
