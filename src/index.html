@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <script src="../env.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="github.js"></script>
+</head>
+
+<body>
+  <h1 id="mainHeader"></h1>
+  <script type="text/javascript">
+    document.getElementById('mainHeader').innerText = "Open pull requests for Team " + env.TEAM_NAME;
+  </script>
+
+  <table id="table">
+    <tr>
+      <th>Repo</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Created At</th>
+      <th>State</th>
+    </tr>
+  </table>
+
+  <div id="message">Loading...</div>
+</body>
+
 </html>
