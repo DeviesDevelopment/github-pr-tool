@@ -93,7 +93,7 @@ function makeRequest(endCursor) {
 
                     tr = $('<tr/>');
                     tr.append("<td>" + repo.name + "</td>");
-                    tr.append("<td>" + "<a href=" + pr.url + ">" + pr.title + "</a>" + "</td>");
+                    tr.append(`<td><a href="${pr.url}" target="_blank">${pr.title}</a></td>`);
                     tr.append("<td>" + pr.author.login + "</td>");
                     tr.append("<td>" + formatDate(new Date(pr.createdAt)) + "</td>");
                     tr.append("<td>" + formatString(pr.reviewDecision) + "</td>");

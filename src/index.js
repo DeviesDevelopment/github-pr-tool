@@ -15,6 +15,13 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
+
+  // Open links in external browser.
+  // Note: Requires that you use target="_blank" on your anchor tags.
+  mainWindow.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    require('electron').shell.openExternal(url);
+  });
 };
 
 // This method will be called when Electron has finished
