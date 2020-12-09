@@ -24,7 +24,23 @@ module.exports = {
     hooks: {
         postMake: async (config, results) => {
             results.forEach(result => {
-                const artifactPath = result.artifacts[0];
+                let artifactPath = result.artifacts[0];
+
+
+                // list all files in the directory
+                fs.readdir(artifactPath, (err, files) => {
+                    if (err) {
+                        throw err;
+                    }
+
+                    console.log("Now listing contents of artifact path");
+                    // files object contains all files names
+                    // log them on console
+                    files.forEach(file => {
+                        console.log(file);
+                    });
+                });
+
                 console.log(`Artifact for ${result.arch}/${result.platform} packaged to: ${artifactPath}`);
                 if (artifactPath.includes("squirrel.windows")) {
                     artifactPath = artifactPath + path.sep + "github-pr-tool.exe";
