@@ -26,7 +26,6 @@ jobs:
           release_name: Release ${{ steps.create_tag.outputs.timestamp }}
           commitish: $GITHUB_SHA
           tag_name: ${{ steps.create_tag.outputs.tag }}
-          release_name: ${{ steps.create_tag.outputs.tag }}
           draft: false
           prerelease: false
     outputs:
