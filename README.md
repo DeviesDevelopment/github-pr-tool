@@ -18,7 +18,8 @@ Unzip `github-pr-tool-macOS.zip` and drag `github-pr-tool.app` to your Applicati
 The first time you launch the app, you must right click it and choose "open" two times. On the second time you will get the option to trust the application.
 
 ### Windows
-Coming soon.
+Run the `github-pr-tool-windows.exe` file.
+First time you run the app it might be blocked due to not being trusted. There should be some option to allow it to run anyway.
 
 ## Development
 

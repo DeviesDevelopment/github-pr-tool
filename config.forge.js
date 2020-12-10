@@ -28,6 +28,8 @@ module.exports = {
 
                 console.log(`Artifact for ${result.arch}/${result.platform} packaged to: ${artifactPath}`);
                 if (artifactPath.includes("squirrel.windows")) {
+                    // Uses the version specified in package.json
+                    // TODO: Make windows artifact naming more consistent with other platforms
                     artifactPath = artifactPath.replace("RELEASES", "github-pr-tool-1.0.0 Setup.exe");
                 }
                 const pathParts = artifactPath.split(".");
