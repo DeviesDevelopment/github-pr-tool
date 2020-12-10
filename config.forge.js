@@ -26,29 +26,14 @@ module.exports = {
             results.forEach(result => {
                 let artifactPath = result.artifacts[0];
 
-
-                // list all files in the directory
-                fs.readdir(artifactPath, (err, files) => {
-                    if (err) {
-                        throw err;
-                    }
-
-                    console.log("Now listing contents of artifact path");
-                    // files object contains all files names
-                    // log them on console
-                    files.forEach(file => {
-                        console.log(file);
-                    });
-                });
-
                 console.log(`Artifact for ${result.arch}/${result.platform} packaged to: ${artifactPath}`);
                 if (artifactPath.includes("squirrel.windows")) {
-                    artifactPath = artifactPath + path.sep + "github-pr-tool.exe";
+                    artifactPath = artifactPath.replace("RELEASES", "github-pr-tool-1.0.0 Setup.exe");
                 }
                 const pathParts = artifactPath.split(".");
                 const extension = pathParts[pathParts.length - 1];
                 const newPath = `out${path.sep}github-pr-tool-${result.arch}-${result.platform}.${extension}`;
-                fs.copyFile(result.artifacts[0], newPath, (err) => {
+                fs.copyFile(artifactPath, newPath, (err) => {
                     if (err) {
                         throw err;
                     }
