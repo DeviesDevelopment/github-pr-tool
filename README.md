@@ -2,6 +2,9 @@
 
 A tool to list open pull requests for your Github team.
 
+## Rationale
+The Github UI does not provide great support for filtering out a list of currently open pull requests for repositories belonging to a specific Github team. You can easily list PRs for a single repository or for your entire organization, but often that is not what you want. One potential workaround is to always tag the team automatically, using a [PR template](https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository), in each of your repositories. But that approach is somewhat error-prone and does not work with for example [Dependabot](https://dependabot.com/), since it uses its own template. Hence the need for this tool, which uses [Github's GraphQL API](https://docs.github.com/en/graphql/overview/about-the-graphql-api) to filter out a complete and correct list of open pull requests.
+
 ## Installation
 
 Grab the latest release bundle for your OS under [Releases](https://github.com/DeviesDevelopment/github-pr-tool/releases) and off you go!
